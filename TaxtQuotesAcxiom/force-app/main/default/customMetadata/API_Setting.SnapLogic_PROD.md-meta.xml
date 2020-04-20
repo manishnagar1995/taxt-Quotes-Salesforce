@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>SnapLogic - PROD</label>
+    <protected>false</protected>
+    <values>
+        <field>Endpoint__c</field>
+        <value xsi:type="xsd:string">https://elastic.snaplogic.com:443/api/1/rest/slsched/feed/acxiom/ADS%20Service%20Management/SFDC%20Cases%20PROD/Create_SN_Ticket</value>
+    </values>
+    <values>
+        <field>Environment__c</field>
+        <value xsi:type="xsd:string">PROD</value>
+    </values>
+    <values>
+        <field>Integration__c</field>
+        <value xsi:type="xsd:string">SnapLogic</value>
+    </values>
+    <values>
+        <field>Password__c</field>
+        <value xsi:type="xsd:string">LEfttuT7A4RAXcM</value>
+    </values>
+    <values>
+        <field>Username__c</field>
+        <value xsi:type="xsd:string">svc_salesforce@acxiom.com</value>
+    </values>
+</CustomMetadata>

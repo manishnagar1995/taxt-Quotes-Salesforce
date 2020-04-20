@@ -1,0 +1,146 @@
+<template>
+    <lightning-card>
+        <template if:true={showSpinner}>
+            <lightning-spinner alternative-text="Loading" variant="brand"></lightning-spinner>
+        </template>
+        <lightning-record-edit-form object-api-name="Tax_Quote__c"
+                                    onerror={handleError}
+                                    onsuccess={handleSuccess}>
+            <lightning-messages>
+            </lightning-messages>
+            <div class="slds-grid slds-wrap">
+
+                <div class="slds-col slds-size_6-of-12 fieldsPadding">
+                    <lightning-input-field field-name="Opportunity__c" >
+                    </lightning-input-field>
+                    
+                    <lightning-input-field field-name="Opportunity_Name__c"> 
+                    </lightning-input-field>
+                    
+                    <lightning-input-field field-name="Date__c">
+                    </lightning-input-field>
+                    
+                </div>
+                
+                <div class="slds-col slds-size_6-of-12 fieldsPadding">
+                    
+                    <lightning-input-field field-name="Clients__c">
+                    </lightning-input-field>
+                    
+                    <lightning-input-field field-name="Client_Name__c">
+                    </lightning-input-field>
+                    
+                    <lightning-input-field field-name="Street__c">
+                    </lightning-input-field>
+
+                    <lightning-input-field field-name="City__c">
+                    </lightning-input-field>
+                    
+                    <lightning-input-field field-name="State__c">
+                    </lightning-input-field>
+                    
+                    <lightning-input-field field-name="Zip_Code__c">
+                    </lightning-input-field>
+            
+                    <lightning-input-field field-name="Country__c">
+                    </lightning-input-field>
+                </div>
+
+                <div class="slds-col slds-size_12-of-12 fieldsPadding">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                        <thead>
+                            <tr class="slds-line-height_reset" style="background: #fafaf9;">
+                                <td>Sales Item</td>
+                                <td>Amount for Item</td>
+                                <template if:true={taxCalculated}>
+                                    <td>Tax Rate</td>
+                                    <td>Tax Amount</td>
+                                </template>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={salesItems} for:item="obj" for:index="index">
+                                <tr class="slds-hint-parent" key={obj}>
+                                    <td>
+                                        <lightning-input variant="label-hidden" 
+                                                            type="text"
+                                                            data-field="Sales_Item__c"
+                                                            data-index={index}
+                                                            onchange={populateData}
+                                                            required
+                                                            value={obj.Sales_Item__c}></lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-input type="number" 
+                                                        step="0.01" 
+                                                        variant="label-hidden"
+                                                        data-field="Amount__c"
+                                                        data-index={index} 
+                                                        onchange={populateData}
+                                                        required
+                                                        value={obj.Amount__c}></lightning-input>
+                                    </td>
+                                    <template if:true={taxCalculated}>
+                                        <td>
+                                            
+                                            <lightning-input type="number" 
+                                                            variant="label-hidden"
+                                                            data-field="Tax_Rate__c"
+                                                            data-index={index} 
+                                                            disabled
+                                                            value={obj.Tax_Rate__c}></lightning-input>
+                                                            <!--onchange={populateData}-->
+                                        </td>
+                                        <td>
+                                            <lightning-input type="number" 
+                                                            formatter="currency" 
+                                                            step="0.01" 
+                                                            disabled
+                                                            variant="label-hidden"
+                                                            data-field="Tax_Amount__c"
+                                                            data-index={index} 
+                                                            value={obj.Tax_Amount__c}></lightning-input>
+                                        </td>
+                                    </template>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <lightning-button-icon icon-name="utility:add"
+                                            variant="border-filled" 
+                                            alternative-text="Add row"
+                                            onclick={addRow}
+                                            title="Add Row"></lightning-button-icon>
+
+                    <!--<lightning-button-icon icon-name="utility:delete"
+                                            variant="border-filled" 
+                                            alternative-text="Delete row"
+                                            onclick={deleteRow}
+                                            title="Delete Row"></lightning-button-icon>-->
+                    
+                </div>
+            </div>
+            
+            <div class="fieldsPadding" style="text-align: right;">
+                <lightning-button
+                    class="slds-m-top_small slds-var-p-around_small"
+                    variant="brand"
+                    name="update"
+                    onclick={handleReset}
+                    label="Clear">
+                </lightning-button>
+                <lightning-button
+                    class="slds-m-top_small slds-var-p-around_small"
+                    variant="brand"
+                    name="update"
+                    onclick={handleSubmit}
+                    label="Submit">
+                </lightning-button>
+                
+                
+            </div>
+
+        </lightning-record-edit-form>
+    </lightning-card>
+</template>
