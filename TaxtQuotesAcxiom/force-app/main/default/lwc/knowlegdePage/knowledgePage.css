@@ -1,0 +1,14 @@
+.slds_abc
+{
+    padding: 4%;
+    padding-top: 2px;
+    font-size: medium;
+    font-weight: 700;
+}
+
+.slds-p-left_xx-large
+{
+    float: right;
+padding-left: 220%;
+display: block;
+}

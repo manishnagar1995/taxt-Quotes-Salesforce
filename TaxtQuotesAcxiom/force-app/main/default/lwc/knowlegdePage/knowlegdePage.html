@@ -1,0 +1,51 @@
+<template>
+    <lightning-card title="Knowledge" icon-name="standard:account">
+    <div class="fullview"  style="padding-top: 10px; background:white;"  >
+    <div > 
+    <h1 class="category" style="padding-top:7px">CATEGORIES</h1> 
+    <div style="padding-top: 1px">
+        <lightning-accordion allow-multiple-sections-open={multiple}>   
+    <template for:each={statusList} for:item="keyValue" for:index="index">
+    <lightning-input class="slds-p-left_xx-large" type="checkbox"  key={keyValue.value} onchange={handleChange} style="float: right;" >
+
+    </lightning-input>
+        <lightning-accordion-section name={keyValue.Name} label ={keyValue.items}  key={keyValue.value} ondblclick={handleClick} > 
+          
+        <template  for:each={keyValue.subcategories} for:item="subcat" > 
+               
+         <div class={subcat.value} data-value={subcat.value} data-id={subcat.value} key={subcat.value} ondblclick={handleClick} >
+            <span>   {subcat.items}
+        
+         <lightning-input class="slds-p-left_xx-large" type="checkbox"  key={subcat.value} onchange={handleChange} style="float: right; vertical-align:baseline " ></lightning-input>       
+        </span>    
+               </div>
+            
+              </template>
+    </lightning-accordion-section>
+        
+        </template>
+        </lightning-accordion>
+        </div>
+    
+    <h1 class="category" style="padding-top:20px">ARTICLE TYPE</h1> 
+    <div style="padding-top: 7px">
+    <template for:each={RtNameList} for:item="keyValue">
+        <lightning-input class="slds-p-left_xx-large" type="checkbox"  key={keyValue.Name} onchange={handleChange} style="float: right;" ></lightning-input>
+    <ul key={keyValue.Name} >
+        <div class="slds_abc" style="padding-left: 4%;
+        padding-top: 1px;
+        font-size: medium;
+        font-weight: 700;">
+    <li class={keyValue.Name} data-value={keyValue.Name} onclick={RtNameHandel}>
+      
+     > {keyValue.Name} 
+   
+    </li>
+</div>
+    </ul>
+    </template>
+    </div>
+ </div>
+    </div>
+    </lightning-card>
+    </template>

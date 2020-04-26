@@ -1,0 +1,21 @@
+<template>
+    <label class="slds-form-element__label Sort-by">Sort By</label>
+    <select class="slds-select sortBySelect" id="sortById" onchange={sortBy} style="float: right;">
+        <option class='dropDwn slds-p-top_x-small slds-p-bottom_x-small' value=" Final_Publish_Date__c DESC ">Publish Date </option>
+        <option class='dropDwn slds-p-top_x-small slds-p-bottom_x-small' value=" ArticleTotalViewCount DESC ">Popular Articles </option>
+        <option class='dropDwn slds-p-top_x-small slds-p-bottom_x-small' value=" Most Rated">Most Rated </option>
+    </select>
+    <h1 class="slds-test" style="padding-top:20px">ARTICLES</h1> 
+    <template if:true={ArticleList}>
+        
+        <template for:each={ArticleList} for:item="ArticleValue">
+      
+            <div  style="padding-top: 7px" key={ArticleValue.Title} >
+                
+         {ArticleValue.Title}
+        
+</div>
+       </template> 
+    </template>
+    
+</template>
